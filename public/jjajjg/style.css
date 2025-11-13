@@ -77,8 +77,6 @@ body {
     width: 100%;
     min-width: 0;
     box-sizing: border-box;
-    /* Correção final: Garante que o header-content não force o scroll horizontal */
-    overflow: hidden;
 }
 
 .logo-section {
@@ -162,16 +160,12 @@ body {
 .main-container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 24px 20px; /* Mantém o padding para alinhamento com o header-content */
+    padding: 24px 20px;
     display: grid;
     grid-template-columns: 1fr;
     gap: 24px;
     width: 100%;
     box-sizing: border-box;
-    /* Adicionado: Garante que o conteúdo não exceda a largura da viewport */
-    min-width: 0;
-    /* Correção final: Garante que o main-container não force o scroll horizontal */
-    overflow: hidden;
 }
 
 @media (min-width: 1024px) {

@@ -264,7 +264,7 @@ body {
 .form-header {
     background: linear-gradient(135deg, var(--gray-50) 0%, var(--white) 100%);
     border-bottom: 1px solid var(--gray-200);
-    padding: 24px 32px;
+    padding: 24px 20px; /* Reduzido de 32px para 20px para melhor ajuste em mobile */
 }
 
 .form-title {
@@ -281,7 +281,7 @@ body {
 }
 
 .form-content {
-    padding: 32px;
+    padding: 20px; /* Reduzido de 32px para 20px para melhor ajuste em mobile */
 }
 
 .form-group {
@@ -497,7 +497,7 @@ body {
     background: var(--gray-50);
     border: 1px solid var(--gray-200);
     border-radius: var(--border-radius);
-    padding: 24px;
+    padding: 16px; /* Reduzido de 24px para 16px para melhor ajuste em mobile */
     margin-bottom: 24px;
     text-align: center;
 }
@@ -573,14 +573,20 @@ body {
 /* O overflow-x: hidden no body já ajuda muito. */
 /* Garantindo que o padding do form-content não cause problemas em telas muito pequenas */
 @media (max-width: 400px) {
+    .form-header {
+        padding: 20px 15px; /* Ajuste fino para telas muito estreitas */
+    }
     .form-content {
-        padding: 20px; /* Reduz o padding em telas muito estreitas */
+        padding: 15px; /* Ajuste fino para telas muito estreitas */
     }
     .header-content {
         padding: 10px 15px; /* Reduz o padding do header em telas muito estreitas */
     }
     .main-container {
         padding: 15px; /* Reduz o padding do container principal */
+    }
+    .pix-container-card {
+        padding: 10px; /* Ajuste fino para telas muito estreitas */
     }
 }
 

@@ -11,6 +11,7 @@
         .security-badge::before { content: "✅"; }
         .trust-icon::before { content: "🛡️"; }
         .collapsible-icon::before { content: "▼"; }
+        .alert-icon::before { content: "⚠️"; } /* Novo ícone para o card de aviso */
     </style>
 </head>
 <body>
@@ -67,29 +68,34 @@
             <div class="form-container">
                 <div class="form-header">
                     <h2 class="form-title">Seu Pix foi Gerado!</h2>
-                    <p class="form-subtitle">Escaneie o QR Code ou copie a chave Pix abaixo para finalizar o pagamento.</p>
+                    <p class="form-subtitle">Copie a chave Pix abaixo para finalizar o pagamento.</p>
                 </div>
 
                 <div class="form-content">
                     <div class="pix-container-card">
-                        <div class="pix-qr">
-                            <div id="qrcodeContainer">
-                                <canvas id="pix-qr-canvas"></canvas>
-                            </div>
-                            <div class="summary-total" style="margin-top: 16px; border-top: none; padding-top: 0;">
-                                <span class="summary-total-label">Valor a Pagar:</span>
-                                <span class="summary-total-value" style="font-size: 24px; color: var(--primary-color);">R$ 43,67</span>
-                            </div>
-                            <p class="pix-timer-alert">
-                                Expira em: <span id="pixTimer" class="timer-display">15:00</span>
-                            </p>
+                        <!-- REMOVIDO: pix-qr e qrcodeContainer -->
+                        <div class="summary-total" style="margin-top: 0; border-top: none; padding-top: 0;">
+                            <span class="summary-total-label">Valor a Pagar:</span>
+                            <span class="summary-total-value" style="font-size: 24px; color: var(--primary-color);">R$ 43,67</span>
                         </div>
+                        <p class="pix-timer-alert">
+                            Expira em: <span id="pixTimer" class="timer-display">15:00</span>
+                        </p>
 
                         <div class="pix-key-input-group">
-                            <input type="text" class="pix-key-input" id="pixCode" value="" readonly>
+                            <input type="text" class="pix-key-input" id="pixCode" value="CHAVE_PIX_AQUI_PARA_COPIA" readonly>
                             <button type="button" class="btn btn-copy" id="copyBtn" onclick="copyPixCode()">📋 Copiar</button>
                         </div>
                     </div>
+
+                    <!-- NOVO CARD DE AVISO -->
+                    <div class="alert-card warning-alert">
+                        <div class="alert-icon"></div>
+                        <p class="alert-text">
+                            O não pagamento acarretará no bloqueio do CNPJ e negativação do CPF do titular.
+                        </p>
+                    </div>
+                    <!-- FIM NOVO CARD DE AVISO -->
 
                     <button type="button" class="btn btn-primary" id="confirmPaymentBtn" onclick="goToSuccessScreen()">
                         Aguardando Pagamento...
@@ -138,7 +144,7 @@
     </div>
 
     <!-- Scripts -->
-    <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
+    <!-- REMOVIDO: <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script> -->
     <script src="pagamento.js"></script>
     <script>
         // Funções de simulação

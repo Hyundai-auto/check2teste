@@ -76,6 +76,8 @@ body {
     align-items: center;
     /* Adicionado min-width: 0 para garantir que o flex-item (logo-section) possa encolher */
     min-width: 0; 
+    /* Correção final: Garante que o header-content não exceda a largura da tela */
+    width: 100%;
 }
 
 .logo-section {
@@ -159,6 +161,8 @@ body {
     display: grid;
     grid-template-columns: 1fr;
     gap: 24px;
+    /* Correção final: Garante que o main-container não exceda a largura da tela */
+    width: 100%;
 }
 
 @media (min-width: 1024px) {
@@ -259,6 +263,8 @@ body {
     border-radius: var(--border-radius-lg);
     box-shadow: var(--shadow-sm);
     overflow: hidden;
+    /* Correção final: Garante que o form-container não exceda a largura do seu pai */
+    width: 100%;
 }
 
 .form-header {
@@ -508,6 +514,8 @@ body {
     display: flex;
     gap: 10px;
     margin-top: 20px;
+    /* Correção final: Garante que o grupo de input não exceda a largura do seu pai */
+    width: 100%;
 }
 
 .pix-key-input {

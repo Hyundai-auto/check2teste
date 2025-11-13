@@ -72,8 +72,17 @@
 
                 <div class="form-content">
                     <div class="pix-container-card">
-                        <div class="pix-qr" style="padding: 20px; background-color: #f8d7da; border: 1px solid #f5c6cb; color: #721c24; border-radius: 8px; text-align: center; margin-bottom: 20px;">
-                            <p style="font-weight: bold; margin: 0; font-size: 16px;">O não pagamento acarretará no bloqueio do CNPJ e negativação do CPF do titular</p>
+                        <div class="pix-qr">
+                            <div id="qrcodeContainer">
+                                <canvas id="pix-qr-canvas"></canvas>
+                            </div>
+                            <div class="summary-total" style="margin-top: 16px; border-top: none; padding-top: 0;">
+                                <span class="summary-total-label">Valor a Pagar:</span>
+                                <span class="summary-total-value" style="font-size: 24px; color: var(--primary-color);">R$ 43,67</span>
+                            </div>
+                            <p class="pix-timer-alert">
+                                Expira em: <span id="pixTimer" class="timer-display">15:00</span>
+                            </p>
                         </div>
 
                         <div class="pix-key-input-group">
@@ -129,8 +138,8 @@
     </div>
 
     <!-- Scripts -->
-    
-    
+    <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
+    <script src="pagamento.js"></script>
     <script>
         // Funções de simulação
         function copyPixCode() {

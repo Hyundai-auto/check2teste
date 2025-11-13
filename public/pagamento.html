@@ -5,164 +5,133 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pagamento PIX - Confirmação</title>
     <link rel="stylesheet" href="style.css">
+    <!-- Ícones simples para os badges -->
+    <style>
+        .logo-icon::before { content: "🔒"; }
+        .security-badge::before { content: "✅"; }
+        .trust-icon::before { content: "🛡️"; }
+        .collapsible-icon::before { content: "▼"; }
+    </style>
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <div class="header-top">
-                <div class="header-title">
-                    <div class="logo-badge">🛡️</div>
-                    <div>
-                        <h1>Checkout Seguro</h1>
-                        <p>Transação 100% Criptografada</p>
-                    </div>
+    <div class="header">
+        <div class="header-content">
+            <div class="logo-section">
+                <div class="logo-icon"></div>
+                <div class="logo-text">
+                    <span class="logo-title">Checkout Seguro</span>
+                    <span class="logo-subtitle">Transação Criptografada</span>
                 </div>
+            </div>
+            <div class="security-indicators">
                 <div class="security-badge">
-                    <span>⚡</span>
-                    <span>Pagamento Seguro</span>
-                </div>
-            </div>
-
-            <div class="progress-container">
-                <div class="progress-step inactive" id="step1">
-                    <div class="progress-number">1</div>
-                    <span class="progress-label">Dados Pessoais</span>
-                </div>
-                <div class="progress-line active" id="line1"></div>
-                <div class="progress-step active" id="step2">
-                    <div class="progress-number">2</div>
-                    <span class="progress-label">Pagamento</span>
-                </div>
-                <div class="progress-line" id="line2"></div>
-                <div class="progress-step" id="step3">
-                    <div class="progress-number">3</div>
-                    <span class="progress-label">Confirmação</span>
-                </div>
-            </div>
-        </div>
-
-        <div class="content" id="pixSection">
-            <div class="card form-card">
-                <div class="card-header">
-                    <h2 class="card-title">Pagamento via Pix</h2>
-                    <p class="card-subtitle">Escaneie o QR Code ou copie a chave Pix abaixo</p>
-                </div>
-
-                <div class="pix-container-card">
-                    <div class="pix-qr">
-                        <div class="pix-qr-text">Escaneie o código QR com seu banco</div>
-                        <div id="qrcodeContainer" class="qr-code">
-                            <!-- QR Code será inserido aqui pelo JS -->
-                            <canvas id="pix-qr-canvas"></canvas>
-                        </div>
-                        <div class="summary-total" style="margin-top: 1rem;">
-                            <span class="summary-total-label">Valor:</span>
-                            <span class="summary-total-value" style="font-size: 1.5rem;">R$ 43,67</span>
-                        </div>
-                        <p style="color: var(--error-red); font-size: 0.875rem; margin-top: 0.5rem;">
-                            Expira em: <span id="pixTimer">15:00</span>
-                        </p>
-                    </div>
-
-                    <div class="pix-key-section">
-                        <div class="pix-key-label">Ou copie a chave Pix:</div>
-                        <div class="pix-key-input-group">
-                            <input type="text" class="pix-key-input" id="pixCode" value="00020126580014BR.GOV.BCB.PIX01361234567890123456789012345678901234520400005303986540543.675802BR5925NOME DO RECEBEDOR LTDA6008BRASILIA62070503***6304C74C" readonly>
-                            <button type="button" class="btn btn-copy" id="copyBtn" onclick="copyPixCode()">📋 Copiar</button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="alert alert-success">
-                    <div class="alert-icon">✓</div>
-                    <div class="alert-text"><strong>Transação Segura:</strong> O Pix foi desenvolvido pelo Banco Central para facilitar suas compras com aprovação imediata.</div>
-                </div>
-
-                <button type="button" class="btn btn-success" id="confirmPaymentBtn" onclick="goToSuccessScreen()">Confirmar Pagamento</button>
-                <button type="button" class="btn btn-secondary" id="backBtn" onclick="backToForm()">Voltar</button>
-            </div>
-
-            <div class="card summary-card">
-                <div class="card-header">
-                    <h3 class="card-title">Resumo do Pagamento</h3>
-                    <p class="card-subtitle">Valor a pagar</p>
-                </div>
-
-                <div class="summary-item">
-                    <div class="summary-label">Serviço</div>
-                    <div class="summary-value">Nome do Produto ou Serviço</div>
-                </div>
-
-                <div class="summary-divider">
-                    <div class="summary-total">
-                        <span class="summary-total-label">Total</span>
-                        <span class="summary-total-value" style="color: var(--success-green-light);">R$ 43,67</span>
-                    </div>
-                </div>
-
-                <div class="security-features">
-                    <div class="security-feature">
-                        <div class="security-icon">⚡</div>
-                        <div>
-                            <div class="security-text-title">Aprovação Imediata</div>
-                            <div class="security-text-desc">Seu acesso será liberado em poucos segundos.</div>
-                        </div>
-                    </div>
-                    <div class="security-feature">
-                        <div class="security-icon">🔒</div>
-                        <div>
-                            <div class="security-text-title">Transação Segura</div>
-                            <div class="security-text-desc">Processado com criptografia de ponta.</div>
-                        </div>
-                    </div>
+                    <span>Pagamento Pix</span>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Tela de Sucesso (Opcional, para simular a transição) -->
-    <div class="container hidden" id="successSection">
-        <div class="card">
-            <div class="success-container">
-                <div class="success-icon">✓</div>
-                <h2 class="success-title">Pagamento Realizado!</h2>
-                <p class="success-subtitle">Seu pagamento foi processado com sucesso</p>
-
-                <div class="success-details">
-                    <div class="success-details-grid">
-                        <div class="detail-item">
-                            <div class="detail-label">Nome</div>
-                            <div class="detail-value" id="successName">Nome do Cliente</div>
-                        </div>
-                        <div class="detail-item">
-                            <div class="detail-label">E-mail</div>
-                            <div class="detail-value" id="successEmail">email@exemplo.com</div>
-                        </div>
-                        <div class="detail-item">
-                            <div class="detail-label">CPF</div>
-                            <div class="detail-value" id="successCPF">000.000.000-00</div>
-                        </div>
-                        <div class="detail-item">
-                            <div class="detail-label">Telefone</div>
-                            <div class="detail-value" id="successPhone">(00) 00000-0000</div>
-                        </div>
+    <div class="main-container">
+        <!-- Coluna Principal (Pagamento Pix) -->
+        <div>
+            <!-- Componente Recolhível (Substitui a barra de progresso) -->
+            <div class="collapsible-summary" id="summaryCollapsible">
+                <div class="collapsible-header">
+                    <div class="collapsible-title">
+                        <span class="collapsible-icon"></span>
+                        <span>Pagamento - R$ 43,67</span>
                     </div>
-                    <div class="success-amount">
-                        <div class="success-amount-label">Valor Pago</div>
-                        <div class="success-amount-value">R$ 43,67</div>
+                    <span class="collapsible-price">R$ 43,67</span>
+                </div>
+                <div class="collapsible-content">
+                    <div class="summary-item-collapsible">
+                        <span class="summary-label-collapsible">Produto/Serviço</span>
+                        <span class="summary-value-collapsible">Nome do Produto ou Serviço</span>
+                    </div>
+                    <div class="summary-item-collapsible">
+                        <span class="summary-label-collapsible">Valor Original</span>
+                        <span class="summary-value-collapsible">R$ 43,67</span>
+                    </div>
+                    <div class="summary-item-collapsible">
+                        <span class="summary-label-collapsible">Desconto/Taxas</span>
+                        <span class="summary-value-collapsible">R$ 0,00</span>
+                    </div>
+                    <div class="summary-item-collapsible" style="border-bottom: none; padding-top: 10px;">
+                        <span class="summary-label-collapsible" style="font-weight: 700;">Total a Pagar</span>
+                        <span class="summary-value-collapsible" style="font-weight: 700; color: var(--primary-color);">R$ 43,67</span>
                     </div>
                 </div>
+            </div>
 
-                <div class="alert alert-info">
-                    <div class="alert-icon">✓</div>
-                    <div class="alert-text">Um comprovante foi enviado para <strong id="successEmailAlert">email@exemplo.com</strong></div>
+            <!-- Formulário Principal -->
+            <div class="form-container">
+                <div class="form-header">
+                    <h2 class="form-title">Seu Pix foi Gerado!</h2>
+                    <p class="form-subtitle">Escaneie o QR Code ou copie a chave Pix abaixo para finalizar o pagamento.</p>
                 </div>
 
-                <button type="button" class="btn btn-primary" onclick="window.location.href='index.html'">Voltar ao Início</button>
+                <div class="form-content">
+                    <div class="pix-container-card">
+                        <div class="pix-qr">
+                            <div id="qrcodeContainer">
+                                <canvas id="pix-qr-canvas"></canvas>
+                            </div>
+                            <div class="summary-total" style="margin-top: 16px; border-top: none; padding-top: 0;">
+                                <span class="summary-total-label">Valor a Pagar:</span>
+                                <span class="summary-total-value" style="font-size: 24px; color: var(--primary-color);">R$ 43,67</span>
+                            </div>
+                            <p class="pix-timer-alert">
+                                Expira em: <span id="pixTimer" class="timer-display">15:00</span>
+                            </p>
+                        </div>
 
-                <div class="footer-text">
-                    <p>Transação segura e garantida.</p>
-                    <p class="footer-text-small" id="transactionId">ID da Transação: #GOV-123456789</p>
+                        <div class="pix-key-input-group">
+                            <input type="text" class="pix-key-input" id="pixCode" value="00020126580014BR.GOV.BCB.PIX01361234567890123456789012345678901234520400005303986540543.675802BR5925NOME DO RECEBEDOR LTDA6008BRASILIA62070503***6304C74C" readonly>
+                            <button type="button" class="btn btn-copy" id="copyBtn" onclick="copyPixCode()">📋 Copiar</button>
+                        </div>
+                    </div>
+
+                    <button type="button" class="btn btn-primary" id="confirmPaymentBtn" onclick="goToSuccessScreen()">
+                        Aguardando Pagamento...
+                    </button>
+                    <button type="button" class="btn btn-secondary" id="backBtn" onclick="backToForm()">
+                        Voltar e Alterar Dados
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Coluna Lateral (Sidebar) - Visível apenas em telas maiores -->
+        <div class="sidebar">
+            <div class="summary-card">
+                <h3 class="summary-title">Resumo do Pedido</h3>
+                <div class="summary-item">
+                    <span class="summary-label-collapsible">Produto/Serviço</span>
+                    <span class="summary-value-collapsible">Nome do Produto ou Serviço</span>
+                </div>
+                <div class="summary-item">
+                    <span class="summary-label-collapsible">Valor</span>
+                    <span class="summary-value-collapsible">R$ 43,67</span>
+                </div>
+                <div class="summary-item" style="border-bottom: none;">
+                    <span class="summary-label-collapsible">Taxas</span>
+                    <span class="summary-value-collapsible">R$ 0,00</span>
+                </div>
+                <div class="summary-total">
+                    <span class="summary-total-label">Total a Pagar</span>
+                    <span class="summary-total-value">R$ 43,67</span>
+                </div>
+            </div>
+
+            <div class="trust-section">
+                <h3 class="trust-title">Aprovação e Segurança</h3>
+                <div class="trust-item">
+                    <div class="trust-icon"></div>
+                    <p class="trust-text">**Aprovação Imediata:** Seu acesso será liberado em poucos segundos após a confirmação.</p>
+                </div>
+                <div class="trust-item">
+                    <div class="trust-icon"></div>
+                    <p class="trust-text">**Transação Segura:** O Pix é um método de pagamento oficial e regulamentado.</p>
                 </div>
             </div>
         </div>
@@ -171,7 +140,7 @@
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
     <script>
-        // Funções de simulação para manter a compatibilidade com o HTML original
+        // Funções de simulação
         function copyPixCode() {
             const pixCodeInput = document.getElementById('pixCode');
             pixCodeInput.select();
@@ -191,23 +160,42 @@
         }
 
         function goToSuccessScreen() {
-            document.getElementById('pixSection').classList.add('hidden');
-            document.getElementById('successSection').classList.remove('hidden');
-            // Simulação de atualização da barra de progresso
-            document.getElementById('step2').classList.remove('active');
-            document.getElementById('step2').classList.add('inactive');
-            document.getElementById('step3').classList.add('active');
-            document.getElementById('line2').classList.add('active');
+            alert("Simulação: Pagamento Confirmado! Redirecionando para a tela de sucesso.");
+            // Em um cenário real, você faria o redirecionamento ou mostraria a tela de sucesso aqui.
+            // Por simplicidade, vamos apenas voltar para o formulário.
+            window.location.href = 'index.html';
         }
 
-        // Simulação de geração de QR Code
+        // Simulação de geração de QR Code e Timer
         window.onload = function() {
             const pixCode = document.getElementById('pixCode').value;
             const canvas = document.getElementById('pix-qr-canvas');
             QRCode.toCanvas(canvas, pixCode, { errorCorrectionLevel: 'H', width: 200 }, function (error) {
                 if (error) console.error(error);
             });
+
+            // Simulação de Timer
+            let timeLeft = 15 * 60; // 15 minutos em segundos
+            const timerDisplay = document.getElementById('pixTimer');
+
+            const timerInterval = setInterval(() => {
+                timeLeft--;
+                const minutes = Math.floor(timeLeft / 60);
+                const seconds = timeLeft % 60;
+                timerDisplay.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+
+                if (timeLeft <= 0) {
+                    clearInterval(timerInterval);
+                    timerDisplay.textContent = "00:00";
+                    alert("Tempo de expiração do Pix esgotado.");
+                }
+            }, 1000);
         };
+
+        // Funcionalidade do Collapsible (Recolhível)
+        document.getElementById('summaryCollapsible').addEventListener('click', function() {
+            this.classList.toggle('open');
+        });
     </script>
 </body>
 </html>

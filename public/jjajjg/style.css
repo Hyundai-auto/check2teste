@@ -74,18 +74,15 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    /* Adicionado min-width: 0 para garantir que o flex-item (logo-section) possa encolher */
-    min-width: 0; 
-    /* Correção final: Garante que o header-content não exceda a largura da tela */
     width: 100%;
+    min-width: 0;
 }
 
 .logo-section {
     display: flex;
     align-items: center;
     gap: 12px;
-    /* Adicionado min-width: 0 para permitir que o flex-item encolha */
-    min-width: 0; 
+    min-width: 0;
 }
 
 .logo-icon {
@@ -111,7 +108,6 @@ body {
     font-weight: 700;
     color: var(--gray-900);
     line-height: 1.2;
-    /* Garante que o texto longo não force o container a expandir */
     min-width: 0;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -124,7 +120,6 @@ body {
     color: var(--gray-500);
     text-transform: uppercase;
     letter-spacing: 0.5px;
-    /* Garante que o texto longo não force o container a expandir */
     min-width: 0;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -148,7 +143,6 @@ body {
     font-size: 12px;
     font-weight: 600;
     border: 1px solid var(--success-color);
-    /* Garante que o badge possa encolher se necessário */
     flex-shrink: 1;
     min-width: 0;
 }
@@ -161,7 +155,6 @@ body {
     display: grid;
     grid-template-columns: 1fr;
     gap: 24px;
-    /* Correção final: Garante que o main-container não exceda a largura da tela */
     width: 100%;
 }
 
@@ -191,6 +184,8 @@ body {
     cursor: pointer;
     transition: var(--transition);
     border-bottom: 1px solid var(--gray-300);
+    min-width: 0;
+    width: 100%;
 }
 
 .collapsible-header:hover {
@@ -204,6 +199,11 @@ body {
     display: flex;
     align-items: center;
     gap: 10px;
+    min-width: 0;
+    flex-shrink: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .collapsible-price {
@@ -240,6 +240,8 @@ body {
     padding: 8px 0;
     font-size: 14px;
     border-bottom: 1px dashed var(--gray-200);
+    min-width: 0;
+    width: 100%;
 }
 
 .summary-item-collapsible:last-child {
@@ -249,11 +251,21 @@ body {
 
 .summary-label-collapsible {
     color: var(--gray-600);
+    flex-shrink: 1;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .summary-value-collapsible {
     font-weight: 600;
     color: var(--gray-800);
+    flex-shrink: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    min-width: 0;
 }
 
 /* ===== FORMULÁRIO PRINCIPAL (MANTENDO O ESTILO DO ANTERIOR, MAS COM NOVAS CORES) ===== */
@@ -263,7 +275,6 @@ body {
     border-radius: var(--border-radius-lg);
     box-shadow: var(--shadow-sm);
     overflow: hidden;
-    /* Correção final: Garante que o form-container não exceda a largura do seu pai */
     width: 100%;
 }
 
@@ -498,7 +509,6 @@ body {
     line-height: 1.4;
 }
 
-/* ===== PIX SCREEN SPECIFICS ===== */
 .pix-container-card {
     background: var(--gray-50);
     border: 1px solid var(--gray-200);
@@ -508,13 +518,10 @@ body {
     text-align: center;
 }
 
-/* REMOVIDO: .pix-qr e #qrcodeContainer */
-
 .pix-key-input-group {
     display: flex;
     gap: 10px;
     margin-top: 20px;
-    /* Correção final: Garante que o grupo de input não exceda a largura do seu pai */
     width: 100%;
 }
 
@@ -528,8 +535,10 @@ body {
     border-radius: var(--border-radius);
     background-color: var(--white);
     color: var(--gray-800);
-    /* Adicionado min-width: 0 para permitir que o input encolha */
     min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .pix-timer-alert {
@@ -554,6 +563,7 @@ body {
     font-size: 14px;
     line-height: 1.5;
     text-align: left; /* Garante que o texto do alerta não fique centralizado */
+    min-width: 0;
 }
 
 .warning-alert {
@@ -575,6 +585,11 @@ body {
 
 .alert-text {
     font-weight: 600;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
+    width: 100%;
 }
 
 /* Ajuste de responsividade para garantir que o conteúdo não "saia para os lados" */

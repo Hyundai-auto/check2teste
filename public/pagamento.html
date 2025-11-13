@@ -3,14 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pagamento PIX - Checkout</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <title>Pagamento PIX - Confirmação</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <!-- Tela de Pagamento Pix -->
     <div id="pixScreen" class="min-h-screen">
         <div class="pix-container">
+            <header class="header-section">
+                <div class="security-badge">
+                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                    </svg>
+                    <span>Pagamento Seguro</span>
+                </div>
+                <h1 class="main-title">Seu Pix foi Gerado!</h1>
+                <p class="subtitle">Utilize o QR Code ou o código Copia e Cola para finalizar o pagamento.</p>
+            </header>
+
             <div class="card">
                 <div class="card-header text-center">
                     <div class="pix-icon-header">
@@ -21,22 +32,30 @@
                         </svg>
                     </div>
                     <h2 class="card-title">Pagamento via Pix</h2>
-                    <p class="card-description">Escaneie o QR Code ou copie o código abaixo</p>
+                    <p class="card-description">O pagamento deve ser feito em até <span id="pixTimer">15:00</span> para garantir sua compra.</p>
                 </div>
                 <div class="card-content">
                     <div class="qrcode-box">
-                        <div id="qrcodeContainer"></div>
+                        <div id="qrcodeContainer">
+                            <!-- QR Code será inserido aqui -->
+                        </div>
                         <p class="pix-amount">R$ 43,67</p>
                         <p class="pix-timer">
-                            Expira em: <span id="pixTimer">15:00</span>
+                            Prazo de expiração: <span id="pixTimerDisplay">15:00</span>
                         </p>
                     </div>
 
                     <div class="form-group">
                         <label>Código Pix Copia e Cola</label>
                         <div class="copy-box">
-                            <input type="text" id="pixCode" readonly>
-                            <button type="button" class="btn-copy" onclick="copyPixCode()">Copiar</button>
+                            <input type="text" id="pixCode" value="00020126580014BR.GOV.BCB.PIX01361234567890123456789012345678901234520400005303986540543.675802BR5925NOME DO RECEBEDOR LTDA6008BRASILIA62070503***6304C74C" readonly>
+                            <button type="button" class="btn-copy" onclick="copyPixCode()">
+                                <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                                </svg>
+                                Copiar
+                            </button>
                         </div>
                     </div>
 
@@ -48,23 +67,25 @@
                             </svg>
                             <div>
                                 <p class="info-title">Aprovação Imediata</p>
-                                <p class="info-text">O pagamento com Pix leva pouco tempo para ser processado</p>
+                                <p class="info-text">Seu acesso será liberado em poucos segundos após a confirmação do pagamento.</p>
                             </div>
                         </div>
                         <div class="info-box">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
-                                <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
                             </svg>
                             <div>
                                 <p class="info-title">Transação Segura</p>
-                                <p class="info-text">O Pix foi desenvolvido pelo Banco Central para facilitar suas compras</p>
+                                <p class="info-text">O Pix é um método de pagamento oficial e seguro, regulamentado pelo Banco Central.</p>
                             </div>
                         </div>
                     </div>
 
                     <button type="button" class="btn-secondary" onclick="backToForm()">
-                        Voltar ao formulário
+                        <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="15 18 9 12 15 6"></polyline>
+                        </svg>
+                        Voltar e Alterar Dados
                     </button>
                 </div>
             </div>
@@ -74,16 +95,14 @@
     <!-- Loading Overlay -->
     <div id="loadingOverlay" class="loading-overlay" style="display: none;">
         <div class="spinner"></div>
-        <p>Carregando pagamento...</p>
+        <p>Aguardando confirmação do pagamento...</p>
     </div>
 
     <!-- Toast Notification -->
     <div id="toast" class="toast"></div>
 
-    <!-- QRCode Library -->
+    <!-- Scripts (manter a estrutura original) -->
     <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
-    
-    <!-- Script da página de pagamento -->
     <script src="pagamento.js"></script>
 </body>
 </html>

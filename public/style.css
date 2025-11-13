@@ -138,8 +138,9 @@ body {
     margin: 0 auto;
     padding: 24px 20px;
     display: grid;
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
     gap: 24px;
+}
 }
 
 @media (min-width: 1024px) {
@@ -362,6 +363,8 @@ body {
     padding: 12px 16px;
     width: auto;
     flex-shrink: 0;
+    flex-grow: 1; /* Permite que o botão cresça se houver espaço */
+    min-width: 100px; /* Define uma largura mínima para o botão */
 }
 
 .btn-copy:hover {
@@ -487,6 +490,7 @@ body {
     display: flex;
     gap: 10px;
     margin-top: 16px;
+    flex-wrap: wrap; /* Permite que os itens quebrem para a próxima linha */
 }
 
 .pix-key-input {
@@ -498,4 +502,6 @@ body {
     border: 1px solid var(--gray-300);
     padding: 12px 16px;
     border-radius: var(--border-radius);
+    min-width: 0; /* Garante que o input possa encolher */
+}
 }

@@ -74,7 +74,7 @@
                     <div class="pix-container-card">
                         <div class="pix-qr">
                             <div id="qrcodeContainer">
-                                <img id="pix-qr-image" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAAEsAQMAAABoYmE7AAAABlBMVEX///8AAABVwtS5AAAAAWJLR0QAiAUdSAAAAAlwSFlzAAALEwAACxMBAJqcGAAAAAd0SU1FB+cKEg8wE81l5/cAAABTSURBVHja7cEBDQAAAMKg909tDwcUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACg+wV+AAG9/wFhAAAAAElFTkSuQmCC" alt="QR Code para Câmera" style="width: 200px; height: 200px; display: block; margin: 0 auto;">
+                                <canvas id="pix-qr-canvas"></canvas>
                             </div>
                             <div class="summary-total" style="margin-top: 16px; border-top: none; padding-top: 0;">
                                 <span class="summary-total-label">Valor a Pagar:</span>
@@ -86,13 +86,6 @@
                         </div>
 
                         <div class="pix-key-input-group">
-                            <!-- Novo Bloco de Aviso de Não Pagamento -->
-                            <div class="payment-warning-block">
-                                <p class="warning-text">
-                                    <span class="warning-icon">⚠️</span>
-                                    <strong>Atenção:</strong> O não pagamento deste débito no prazo estipulado acarretará em medidas legais, incluindo o <strong>bloqueio do CNPJ</strong> e a <strong>negativação do CPF do titular</strong> junto aos órgãos de proteção ao crédito.
-                                </p>
-                            </div>
                             <input type="text" class="pix-key-input" id="pixCode" value="" readonly>
                             <button type="button" class="btn btn-copy" id="copyBtn" onclick="copyPixCode()">📋 Copiar</button>
                         </div>
@@ -145,21 +138,11 @@
     </div>
 
     <!-- Scripts -->
-    
+    <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
     <script src="pagamento.js"></script>
     <script>
         // Funções de simulação
-        // A função de geração de QR Code foi removida, pois o QR Code para Câmera
-        // deve ser gerado no backend e a URL/imagem deve ser injetada no HTML.
-        // A imagem placeholder foi inserida diretamente no HTML.
         function copyPixCode() {
-            // Simulação de QR Code para Câmera (substituindo o canvas)
-            const qrImage = document.getElementById('pix-qr-image');
-            // Aqui você deve substituir o src pela imagem real do QR Code para Câmera
-            // Por exemplo: qrImage.src = 'URL_DO_QR_CODE_PARA_CAMERA';
-            // O valor base64 atual é apenas um placeholder de imagem transparente.
-
-
             const pixCodeInput = document.getElementById('pixCode');
             pixCodeInput.select();
             document.execCommand('copy');

@@ -718,3 +718,28 @@ body {
         font-size: 14px;
     }
 }
+/* ===== SPINNER CIRCULAR PARA BOTÕES ===== */
+.spinner {
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    border-top: 3px solid var(--white); /* Cor do spinner */
+    border-radius: 50%;
+    width: 16px;
+    height: 16px;
+    animation: spin 1s linear infinite;
+    display: inline-block;
+    margin-right: 8px; /* Espaçamento entre o spinner e o texto */
+    flex-shrink: 0; /* Garante que o spinner não encolha */
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Ajuste para o botão primário que já tem display: flex */
+.btn-primary {
+    /* O display: flex já está definido na classe .btn */
+    /* Apenas garantindo que o alinhamento esteja correto */
+    align-items: center;
+    justify-content: center;
+}

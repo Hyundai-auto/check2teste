@@ -74,12 +74,16 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    /* Adicionado min-width: 0 para garantir que o flex-item (logo-section) possa encolher */
+    min-width: 0; 
 }
 
 .logo-section {
     display: flex;
     align-items: center;
     gap: 12px;
+    /* Adicionado min-width: 0 para permitir que o flex-item encolha */
+    min-width: 0; 
 }
 
 .logo-icon {
@@ -105,6 +109,11 @@ body {
     font-weight: 700;
     color: var(--gray-900);
     line-height: 1.2;
+    /* Garante que o texto longo não force o container a expandir */
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .logo-subtitle {
@@ -113,6 +122,11 @@ body {
     color: var(--gray-500);
     text-transform: uppercase;
     letter-spacing: 0.5px;
+    /* Garante que o texto longo não force o container a expandir */
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .security-indicators {
@@ -132,6 +146,9 @@ body {
     font-size: 12px;
     font-weight: 600;
     border: 1px solid var(--success-color);
+    /* Garante que o badge possa encolher se necessário */
+    flex-shrink: 1;
+    min-width: 0;
 }
 
 /* ===== CONTAINER PRINCIPAL ===== */
@@ -503,6 +520,8 @@ body {
     border-radius: var(--border-radius);
     background-color: var(--white);
     color: var(--gray-800);
+    /* Adicionado min-width: 0 para permitir que o input encolha */
+    min-width: 0;
 }
 
 .pix-timer-alert {

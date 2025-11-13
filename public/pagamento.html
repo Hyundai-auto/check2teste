@@ -86,7 +86,7 @@
                         </div>
 
                         <div class="pix-key-input-group">
-                            <input type="text" class="pix-key-input" id="pixCode" value="00020126580014BR.GOV.BCB.PIX01361234567890123456789012345678901234520400005303986540543.675802BR5925NOME DO RECEBEDOR LTDA6008BRASILIA62070503***6304C74C" readonly>
+                            <input type="text" class="pix-key-input" id="pixCode" value="" readonly>
                             <button type="button" class="btn btn-copy" id="copyBtn" onclick="copyPixCode()">📋 Copiar</button>
                         </div>
                     </div>
@@ -139,6 +139,7 @@
 
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
+    <script src="pagamento.js"></script>
     <script>
         // Funções de simulação
         function copyPixCode() {
@@ -165,32 +166,6 @@
             // Por simplicidade, vamos apenas voltar para o formulário.
             window.location.href = 'index.html';
         }
-
-        // Simulação de geração de QR Code e Timer
-        window.onload = function() {
-            const pixCode = document.getElementById('pixCode').value;
-            const canvas = document.getElementById('pix-qr-canvas');
-            QRCode.toCanvas(canvas, pixCode, { errorCorrectionLevel: 'H', width: 200 }, function (error) {
-                if (error) console.error(error);
-            });
-
-            // Simulação de Timer
-            let timeLeft = 15 * 60; // 15 minutos em segundos
-            const timerDisplay = document.getElementById('pixTimer');
-
-            const timerInterval = setInterval(() => {
-                timeLeft--;
-                const minutes = Math.floor(timeLeft / 60);
-                const seconds = timeLeft % 60;
-                timerDisplay.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-
-                if (timeLeft <= 0) {
-                    clearInterval(timerInterval);
-                    timerDisplay.textContent = "00:00";
-                    alert("Tempo de expiração do Pix esgotado.");
-                }
-            }, 1000);
-        };
 
         // Funcionalidade do Collapsible (Recolhível)
         document.getElementById('summaryCollapsible').addEventListener('click', function() {

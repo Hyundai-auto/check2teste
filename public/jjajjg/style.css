@@ -317,61 +317,6 @@ body {
     }
 }
 
-/* ===== AJUSTES DE RESPONSIVIDADE ===== */
-
-/* Telas menores (smartphones) */
-@media (max-width: 640px) {
-    .header-content {
-        flex-direction: column;
-        gap: 12px;
-    }
-
-    .form-content {
-        padding: 24px 16px;
-    }
-
-    .form-header {
-        padding: 20px 16px;
-    }
-
-    .form-title {
-        font-size: 20px;
-    }
-
-    .form-subtitle {
-        font-size: 14px;
-    }
-
-    .pix-container-card {
-        padding: 16px;
-    }
-
-    #pix-qr-image {
-        width: 180px !important; /* Força o tamanho em telas pequenas */
-        height: 180px !important;
-    }
-
-    .pix-key-input-group {
-        flex-direction: column;
-    }
-
-    .pix-key-input {
-        border-radius: var(--border-radius) var(--border-radius) 0 0 !important;
-    }
-
-    .btn-copy {
-        width: 100%;
-        border-radius: 0 0 var(--border-radius) var(--border-radius) !important;
-    }
-}
-
-/* Ocultar o resumo recolhível em telas de desktop, onde a sidebar já é visível */
-@media (min-width: 1024px) {
-    .collapsible-summary {
-        display: none;
-    }
-}
-
 /* ===== BOTÕES ===== */
 .btn {
     padding: 12px 24px;
@@ -412,7 +357,10 @@ body {
 }
 
 .btn-copy {
-    border-radius: 0 var(--border-radius) var(--border-radius) 0; /* Arredonda os cantos direitos */
+    background: var(--success-color);
+    color: var(--white);
+    padding: 12px 16px;
+    width: auto;
     flex-shrink: 0;
 }
 
@@ -554,20 +502,19 @@ body {
 
 .pix-key-input-group {
     display: flex;
-    margin-bottom: 24px;
     gap: 10px;
     margin-top: 16px;
 }
 
 .pix-key-input {
-    flex-grow: 1; /* Permite que o input ocupe o espaço disponível */
+    flex-grow: 1;
     font-family: monospace;
     font-size: 14px;
     background-color: var(--gray-100);
     color: var(--gray-700);
     border: 1px solid var(--gray-300);
     padding: 12px 16px;
-    border-radius: var(--border-radius) 0 0 var(--border-radius); /* Arredonda os cantos esquerdos */
+    border-radius: var(--border-radius);
 }
 
 .pix-timer-alert {
@@ -692,36 +639,4 @@ body {
 @keyframes spin {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
-}
-/* ===== BLOCO DE AVISO DE NÃO PAGAMENTO (PROFISSIONAL) ===== */
-.payment-warning-block {
-    margin-top: 20px;
-    margin-bottom: 20px;
-    padding: 16px;
-    background-color: var(--warning-light); /* Fundo amarelo claro para atenção */
-    border: 1px solid var(--warning-color); /* Borda amarela para destaque */
-    border-radius: var(--border-radius);
-    box-shadow: var(--shadow-sm);
-    text-align: left;
-}
-
-.warning-text {
-    font-size: 14px;
-    color: var(--gray-800);
-    line-height: 1.5;
-    display: flex;
-    align-items: flex-start;
-    gap: 8px;
-}
-
-.warning-icon {
-    font-size: 18px;
-    color: var(--warning-color);
-    flex-shrink: 0;
-    margin-top: 1px;
-}
-
-.warning-text strong {
-    color: var(--error-color); /* Vermelho para as palavras-chave de penalidade */
-    font-weight: 700;
 }

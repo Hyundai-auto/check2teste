@@ -2,7 +2,7 @@
 * {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
+    box-sizing: border-box; /* Essencial para que padding e border não aumentem a largura total */
 }
 
 :root {
@@ -53,7 +53,7 @@ body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     padding: 0;
-    /* Ajuste de responsividade principal: impede o scroll horizontal */
+    /* Essencial para evitar scroll horizontal */
     overflow-x: hidden;
 }
 
@@ -76,6 +76,7 @@ body {
     align-items: center;
     width: 100%;
     min-width: 0;
+    box-sizing: border-box;
 }
 
 .logo-section {
@@ -83,6 +84,7 @@ body {
     align-items: center;
     gap: 12px;
     min-width: 0;
+    flex-shrink: 1; /* Permite que a seção encolha */
 }
 
 .logo-icon {
@@ -96,11 +98,13 @@ body {
     color: var(--white);
     font-size: 20px;
     box-shadow: var(--shadow-md);
+    flex-shrink: 0; /* Garante que o ícone não encolha */
 }
 
 .logo-text {
     display: flex;
     flex-direction: column;
+    min-width: 0; /* Permite que o texto encolha */
 }
 
 .logo-title {
@@ -130,6 +134,8 @@ body {
     display: flex;
     align-items: center;
     gap: 16px;
+    flex-shrink: 1; /* Permite que a seção encolha */
+    min-width: 0;
 }
 
 .security-badge {
@@ -145,6 +151,9 @@ body {
     border: 1px solid var(--success-color);
     flex-shrink: 1;
     min-width: 0;
+    white-space: nowrap; /* Evita quebra de linha no badge */
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 /* ===== CONTAINER PRINCIPAL ===== */
@@ -156,6 +165,7 @@ body {
     grid-template-columns: 1fr;
     gap: 24px;
     width: 100%;
+    box-sizing: border-box;
 }
 
 @media (min-width: 1024px) {
@@ -186,6 +196,7 @@ body {
     border-bottom: 1px solid var(--gray-300);
     min-width: 0;
     width: 100%;
+    box-sizing: border-box;
 }
 
 .collapsible-header:hover {
@@ -210,12 +221,15 @@ body {
     font-size: 18px;
     font-weight: 700;
     color: var(--primary-color);
+    flex-shrink: 0; /* Garante que o preço não encolha */
+    white-space: nowrap;
 }
 
 .collapsible-icon {
     transition: transform 0.3s ease;
     font-size: 18px;
     color: var(--gray-500);
+    flex-shrink: 0;
 }
 
 .collapsible-summary.open .collapsible-icon {
@@ -242,6 +256,7 @@ body {
     border-bottom: 1px dashed var(--gray-200);
     min-width: 0;
     width: 100%;
+    box-sizing: border-box;
 }
 
 .summary-item-collapsible:last-child {
@@ -276,12 +291,14 @@ body {
     box-shadow: var(--shadow-sm);
     overflow: hidden;
     width: 100%;
+    box-sizing: border-box;
 }
 
 .form-header {
     background: linear-gradient(135deg, var(--gray-50) 0%, var(--white) 100%);
     border-bottom: 1px solid var(--gray-200);
     padding: 24px 20px; /* Reduzido de 32px para 20px para melhor ajuste em mobile */
+    box-sizing: border-box;
 }
 
 .form-title {
@@ -299,6 +316,7 @@ body {
 
 .form-content {
     padding: 20px; /* Reduzido de 32px para 20px para melhor ajuste em mobile */
+    box-sizing: border-box;
 }
 
 .form-group {
@@ -322,6 +340,7 @@ body {
     color: var(--gray-800);
     transition: var(--transition);
     background-color: var(--white);
+    box-sizing: border-box;
 }
 
 .form-input:focus {
@@ -367,6 +386,7 @@ body {
     justify-content: center;
     gap: 8px;
     width: 100%;
+    box-sizing: border-box;
 }
 
 .btn-primary {
@@ -398,6 +418,7 @@ body {
     padding: 12px 16px;
     width: auto;
     flex-shrink: 0;
+    box-sizing: border-box;
 }
 
 .btn-copy:hover {
@@ -427,6 +448,7 @@ body {
     border-radius: var(--border-radius-lg);
     padding: 20px;
     box-shadow: var(--shadow-sm);
+    box-sizing: border-box;
 }
 
 .summary-title {
@@ -474,6 +496,7 @@ body {
     border-radius: var(--border-radius-lg);
     padding: 20px;
     box-shadow: var(--shadow-sm);
+    box-sizing: border-box;
 }
 
 .trust-title {
@@ -516,6 +539,7 @@ body {
     padding: 16px; /* Reduzido de 24px para 16px para melhor ajuste em mobile */
     margin-bottom: 24px;
     text-align: center;
+    box-sizing: border-box;
 }
 
 .pix-key-input-group {
@@ -523,6 +547,7 @@ body {
     gap: 10px;
     margin-top: 20px;
     width: 100%;
+    box-sizing: border-box;
 }
 
 .pix-key-input {
@@ -539,6 +564,7 @@ body {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+    box-sizing: border-box;
 }
 
 .pix-timer-alert {
@@ -564,6 +590,7 @@ body {
     line-height: 1.5;
     text-align: left; /* Garante que o texto do alerta não fique centralizado */
     min-width: 0;
+    box-sizing: border-box;
 }
 
 .warning-alert {
@@ -575,9 +602,12 @@ body {
 .alert-icon {
     width: 20px;
     height: 20px;
+    background: var(--warning-light);
+    border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
+    color: var(--warning-color);
     font-size: 16px;
     flex-shrink: 0;
     margin-top: 2px;

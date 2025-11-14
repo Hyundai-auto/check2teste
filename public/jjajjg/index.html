@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CheckoSeguro - Finalize sua Compra</title>
+    <title>Checkout Seguro - Finalize sua Compra</title>
     <link rel="stylesheet" href="style.css">
     <!-- Ícones simples para os badges -->
     <style>
@@ -154,6 +154,12 @@
         <p>Ao continuar, você concorda com nossos <a href="#" style="color: var(--primary-color); text-decoration: none; font-weight: 600;">Termos de Uso</a> e <a href="#" style="color: var(--primary-color); text-decoration: none; font-weight: 600;">Política de Privacidade</a>.</p>
         <p class="footer-text-small">© 2024 [Nome da Sua Empresa]. Todos os direitos reservados.</p>
     </footer>
+
+    <!-- Overlay de Carregamento -->
+    <div id="loadingOverlay">
+        <div class="spinner"></div>
+        <p>Processando pagamento...</p>
+    </div>
 
     <!-- Scripts -->
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
